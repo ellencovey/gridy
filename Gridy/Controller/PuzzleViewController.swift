@@ -17,13 +17,17 @@ class PuzzleViewController:
     UIDropInteractionDelegate {
     
     var collectionViewIndexPath: IndexPath?
+    var moves = 0
     
     var originalTiles = [UIImage]() // image split into pieces, will reorder
     var originalTilesBeforeShuffle = [UIImage]() // keep correct order for comparison
     var targetTiles = [UIImage]() // holds placeholders in drop spaces
     
+    @IBOutlet weak var movesCount: UILabel!
     @IBOutlet weak var tileCollectionView: UICollectionView!
     @IBOutlet weak var targetCollectionView: UICollectionView!
+    @IBAction func showHint(_ sender: Any) {
+    }
     
     public var editedImage: UIImage? // for screenshot from last view (screenshot in A)
     let gridSize = 4
@@ -162,6 +166,14 @@ class PuzzleViewController:
         })
         
         coordinator.drop(items.first!.dragItem, toItemAt: destinationIndexPath)
+        
+        moves += 1
+        movesCount.text = String(moves)
+        
+        if originalTiles.allSatisfy({$0 == UIImage(named: "placeholder")}) {
+            print("You win!")
+            performSegue(withIdentifier: "PuzzletoWinSegue", sender: nil)
+        }
 
     }
     
@@ -208,6 +220,18 @@ class PuzzleViewController:
         }
         print("SlicingDone")
         return images
+    }
+    
+    
+    // sends final image to next screen
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PuzzletoWinSegue"
+        {
+            if let destinationVC = segue.destination as? WinViewController {
+                destinationVC.fullImage = editedImage
+                destinationVC.finalMoves = moves
+            }
+        }
     }
     
     

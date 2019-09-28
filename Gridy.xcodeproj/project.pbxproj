@@ -21,6 +21,7 @@
 		9BDCDDC722E5E2C30022134D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDCDDC622E5E2C30022134D /* RoundButton.swift */; };
 		9BDCDDCD22E5E7420022134D /* EditedImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDCDDCC22E5E7420022134D /* EditedImageViewController.swift */; };
 		9BDCDDCF22E631A60022134D /* Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDCDDCE22E631A60022134D /* Creation.swift */; };
+		9BF311FC233E6BAE00AAC9AF /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF311FB233E6BAE00AAC9AF /* WinViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		9BDCDDC622E5E2C30022134D /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		9BDCDDCC22E5E7420022134D /* EditedImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditedImageViewController.swift; sourceTree = "<group>"; };
 		9BDCDDCE22E631A60022134D /* Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creation.swift; sourceTree = "<group>"; };
+		9BF311FB233E6BAE00AAC9AF /* WinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				9B4108C122E1FE5C0013F042 /* ViewController.swift */,
 				9BDCDDCC22E5E7420022134D /* EditedImageViewController.swift */,
 				9BB391E222E7205400342D11 /* PuzzleViewController.swift */,
+				9BF311FB233E6BAE00AAC9AF /* WinViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				9BB391E322E7205400342D11 /* PuzzleViewController.swift in Sources */,
 				9B4108C222E1FE5C0013F042 /* ViewController.swift in Sources */,
 				9B4108D422E2087A0013F042 /* PickButton.swift in Sources */,
+				9BF311FC233E6BAE00AAC9AF /* WinViewController.swift in Sources */,
 				9B4108C022E1FE5C0013F042 /* AppDelegate.swift in Sources */,
 				9BDCDDCF22E631A60022134D /* Creation.swift in Sources */,
 			);

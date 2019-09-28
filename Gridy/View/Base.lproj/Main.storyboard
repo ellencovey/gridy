@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -92,11 +93,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="fqI-zc-3Hg"/>
                     <connections>
                         <outlet property="pickButtonCamera" destination="UhZ-Bm-93E" id="qoc-W4-ZEY"/>
                         <outlet property="pickButtonLibrary" destination="cVs-rM-dCU" id="Uvp-56-vqO"/>
                         <outlet property="pickButtonLocal" destination="hkc-S3-WI2" id="FDi-d8-whr"/>
-                        <segue destination="7Wg-eW-ZlF" kind="presentation" identifier="PickedImageSegue" id="6bU-Np-SHI"/>
+                        <segue destination="7Wg-eW-ZlF" kind="presentation" identifier="PickedImageSegue" modalPresentationStyle="fullScreen" id="6bU-Np-SHI"/>
                     </connections>
                 </viewController>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="l6s-bx-dCR">
@@ -126,15 +128,15 @@
             <objects>
                 <viewController id="7Wg-eW-ZlF" customClass="EditedImageViewController" customModule="Gridy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Iyn-bG-aPe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Yp-P6-f2v">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="utM-wT-eeX">
-                                <rect key="frame" x="37.5" y="10" width="300" height="587"/>
+                                <rect key="frame" x="37.5" y="10" width="300" height="607"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8p-gC-PSv">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="52"/>
@@ -146,14 +148,16 @@
                                             <action selector="close:" destination="7Wg-eW-ZlF" eventType="touchUpInside" id="Ysm-rM-b99"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjust the puzzle image: zoom, rotate, reposition" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsC-AS-6jb">
-                                        <rect key="frame" x="36" y="88" width="228.5" height="37.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsC-AS-6jb">
+                                        <rect key="frame" x="60" y="94.5" width="180" height="37.5"/>
+                                        <string key="text">Adjust the puzzle image: 
+zoom, rotate, reposition</string>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" red="0.58448082209999996" green="0.59588837620000001" blue="0.60392373799999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Izn-9j-1Tf">
-                                        <rect key="frame" x="0.0" y="161" width="300" height="300"/>
+                                        <rect key="frame" x="0.0" y="174.5" width="300" height="300"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic-boat" translatesAutoresizingMaskIntoConstraints="NO" id="GzL-eY-xJJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
@@ -172,7 +176,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOI-bG-pcM" customClass="RoundButton" customModule="Gridy" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="497" width="300" height="90"/>
+                                        <rect key="frame" x="0.0" y="517" width="300" height="90"/>
                                         <color key="backgroundColor" red="0.60014885659999995" green="0.82315748929999999" blue="0.61565762759999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="qHW-UK-yzs"/>
@@ -188,7 +192,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="start:" destination="7Wg-eW-ZlF" eventType="touchUpInside" id="BdT-Ba-bXv"/>
-                                            <segue destination="iJd-Y6-Qcn" kind="show" identifier="ImageToPuzzleSegue" id="guP-ik-sUw"/>
+                                            <segue destination="iJd-Y6-Qcn" kind="presentation" identifier="ImageToPuzzleSegue" modalPresentationStyle="fullScreen" id="guP-ik-sUw"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -228,13 +232,52 @@
         <!--Puzzle View Controller-->
         <scene sceneID="kT2-Py-fHH">
             <objects>
-                <viewController id="iJd-Y6-Qcn" customClass="PuzzleViewController" customModule="Gridy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="iJd-Y6-Qcn" customClass="PuzzleViewController" customModule="Gridy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VtY-8M-vnb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LlV-OS-IhW">
+                                <rect key="frame" x="301" y="222" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="Grit"/>
+                                <state key="normal" image="icon-lookup"/>
+                                <connections>
+                                    <action selector="showHint:" destination="iJd-Y6-Qcn" eventType="touchUpInside" id="f1B-ku-vhQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="moves:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3VJ-AF-4Mn">
+                                <rect key="frame" x="262" y="43" width="52" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" name="Smog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOm-2d-yKx">
+                                <rect key="frame" x="322" y="41" width="37" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="TimeBurner" family="TimeBurner" pointSize="22"/>
+                                <color key="textColor" name="Grit"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Alf-hT-eRL" customClass="RoundButton" customModule="Gridy" customModuleProvider="target">
+                                <rect key="frame" x="16" y="37" width="105" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="SeaFoam"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <state key="normal" title="New Game">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="QVs-iP-K2R"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="name-small-green" translatesAutoresizingMaskIntoConstraints="NO" id="Qyf-04-cgf">
+                                <rect key="frame" x="152" y="37" width="70" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WIT-fl-g9d">
-                                <rect key="frame" x="16" y="20" width="343" height="166"/>
+                                <rect key="frame" x="16" y="106" width="343" height="166"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="Hcl-sn-pec">
@@ -311,17 +354,133 @@
                         <viewLayoutGuide key="safeArea" id="DGr-6e-e8m"/>
                     </view>
                     <connections>
+                        <outlet property="movesCount" destination="hOm-2d-yKx" id="5zt-oo-zdP"/>
                         <outlet property="targetCollectionView" destination="JYb-7T-Jaf" id="oEt-TQ-ZOy"/>
                         <outlet property="tileCollectionView" destination="WIT-fl-g9d" id="4mj-6E-kS3"/>
+                        <segue destination="a2Q-xb-I6e" kind="presentation" identifier="PuzzletoWinSegue" modalPresentationStyle="fullScreen" id="vpE-Zg-RoB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kaO-3e-712" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1749.5999999999999" y="26.53673163418291"/>
         </scene>
+        <!--Win View Controller-->
+        <scene sceneID="lLw-FG-xN3">
+            <objects>
+                <viewController id="a2Q-xb-I6e" customClass="WinViewController" customModule="Gridy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qii-3d-vq2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Well done!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Une-BV-x8u">
+                                <rect key="frame" x="118" y="93" width="139" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="TimeBurner" family="TimeBurner" pointSize="30"/>
+                                <color key="textColor" name="Smog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="name-small-green" translatesAutoresizingMaskIntoConstraints="NO" id="HDO-LG-Efk">
+                                <rect key="frame" x="152" y="37" width="70" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YdQ-FQ-G0B" customClass="RoundButton" customModule="Gridy" customModuleProvider="target">
+                                <rect key="frame" x="37" y="557" width="142" height="90"/>
+                                <color key="backgroundColor" red="0.60014885659999995" green="0.82315748929999999" blue="0.61565762759999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="90" id="hdy-1a-sQ9"/>
+                                    <constraint firstAttribute="height" constant="90" id="mOj-G6-AAD"/>
+                                    <constraint firstAttribute="width" constant="142" id="vIe-5M-qtj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TimeBurner" family="TimeBurner" pointSize="30"/>
+                                <state key="normal" title="Share">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="share:" destination="a2Q-xb-I6e" eventType="touchUpInside" id="Af3-Zt-LOd"/>
+                                    <action selector="start:" destination="7Wg-eW-ZlF" eventType="touchUpInside" id="1H4-7f-goq"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wSA-CR-e89">
+                                <rect key="frame" x="37" y="233" width="300" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMh-zB-RX7" customClass="RoundButton" customModule="Gridy" customModuleProvider="target">
+                                <rect key="frame" x="195" y="557" width="142" height="90"/>
+                                <color key="backgroundColor" name="Smog"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="SQM-mv-JLX"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="90" id="XOU-he-VNo"/>
+                                    <constraint firstAttribute="width" constant="142" id="qKt-ag-l6X"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TimeBurner" family="TimeBurner" pointSize="30"/>
+                                <state key="normal" title="New">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="start:" destination="7Wg-eW-ZlF" eventType="touchUpInside" id="mlM-q1-dK4"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="cHc-EV-fkd"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PP4-m2-iDB">
+                                <rect key="frame" x="152" y="142" width="70" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="TimeBurner" family="TimeBurner" pointSize="36"/>
+                                <color key="textColor" name="Grit"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="moves" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jer-Tu-TrG">
+                                <rect key="frame" x="163" y="189" width="48" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" name="Grit"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="FbW-2E-E1I" firstAttribute="bottom" secondItem="YdQ-FQ-G0B" secondAttribute="bottom" constant="20" id="6o1-q1-DSo"/>
+                            <constraint firstItem="YdQ-FQ-G0B" firstAttribute="leading" secondItem="FbW-2E-E1I" secondAttribute="leading" constant="37" id="ekO-df-w9S"/>
+                            <constraint firstItem="FbW-2E-E1I" firstAttribute="bottom" secondItem="CMh-zB-RX7" secondAttribute="bottom" constant="20" id="mov-TV-kEY"/>
+                            <constraint firstItem="FbW-2E-E1I" firstAttribute="trailing" secondItem="CMh-zB-RX7" secondAttribute="trailing" constant="38" id="qAZ-D4-3js"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FbW-2E-E1I"/>
+                    </view>
+                    <connections>
+                        <outlet property="winImage" destination="wSA-CR-e89" id="esT-Js-8kc"/>
+                        <outlet property="winMoves" destination="PP4-m2-iDB" id="5ZR-ig-aj3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WPe-gA-Q6G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2565.5999999999999" y="24.7376311844078"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="icon-lookup" width="36" height="28"/>
         <image name="name-large-green" width="330" height="160"/>
+        <image name="name-small-green" width="70" height="34"/>
         <image name="pic-boat" width="300" height="300"/>
+        <namedColor name="Grit">
+            <color red="0.27799999713897705" green="0.27099999785423279" blue="0.24699999392032623" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="SeaFoam">
+            <color red="0.60000002384185791" green="0.82300001382827759" blue="0.61599999666213989" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="Smog">
+            <color red="0.58399999141693115" green="0.59600001573562622" blue="0.60399997234344482" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="QVs-iP-K2R"/>
+    </inferredMetricsTieBreakers>
 </document>
