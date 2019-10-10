@@ -11,37 +11,48 @@ import UIKit
 
 extension UIImage {
     
-    //converts UIView to UIImage
-    convenience init(view: UIView) {
-        UIGraphicsBeginImageContext(view.frame.size)
-        view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        self.init(cgImage: (image?.cgImage)!)
-    }
-    //splits image into pieces
-    func splitImage(_ gridDimension: Int) -> [UIImage] {
-        let y = scale * (size.height / CGFloat(gridDimension))
-        let x = scale * (size.width / CGFloat(gridDimension))
-        var images = [UIImage]()
-        images.reserveCapacity(gridDimension * gridDimension)
-        guard let cgImage = cgImage else { return [] }
+    func slice(into howMany: Int) -> [UIImage] {
+        let width: CGFloat
+        let height: CGFloat
         
-        (0..<gridDimension).forEach { row in
-            (0..<gridDimension).forEach { column in
-                var width = Int(x)
-                var height = Int(y)
-                if row == gridDimension-1 && size.height.truncatingRemainder(dividingBy: CGFloat(gridDimension)) != 0 {
-                    height = Int(scale * (size.height - size.height / CGFloat(gridDimension) * (CGFloat(gridDimension)-1)))
-                }
-                if column == gridDimension-1 && size.width.truncatingRemainder(dividingBy: CGFloat(gridDimension)) != 0 {
-                    width = Int(scale * (size.width - (size.width / CGFloat(gridDimension) * (CGFloat(gridDimension)-1))))
-                }
-                if let image = cgImage.cropping(to: CGRect(origin: CGPoint(x: column * Int(x), y:  row * Int(x)), size: CGSize(width: width, height: height))) {
-                    images.append(UIImage(cgImage: image, scale: scale, orientation: imageOrientation))
-                }
-            }
+        switch self.imageOrientation {
+        case .left, .leftMirrored, .right, .rightMirrored:
+            width = self.size.height
+            height = self.size.width
+        default:
+            width = self.size.width
+            height = self.size.height
         }
+        
+        let tileWidth = Int(width / CGFloat(howMany))
+        let tileHeight = Int(height / CGFloat(howMany))
+        
+        let scale = Int(self.scale)
+        var images = [UIImage]()
+        let cgImage = self.cgImage!
+        
+        var adjustedHeight = tileHeight
+        
+        var y = 0
+        for row in 0 ..< howMany {
+            if row == (howMany - 1) {
+                adjustedHeight = Int(height) - y
+            }
+            var adjustedWidth = tileWidth
+            var x = 0
+            for column in 0 ..< howMany {
+                if column == (howMany - 1) {
+                    adjustedWidth = Int(width) - x
+                }
+                let origin = CGPoint(x: x * scale, y: y * scale)
+                let size = CGSize(width: adjustedWidth * scale, height: adjustedHeight * scale)
+                let tileCGImage = cgImage.cropping(to: CGRect(origin: origin, size: size))!
+                images.append(UIImage(cgImage: tileCGImage, scale: self.scale, orientation: self.imageOrientation))
+                x += tileWidth
+            }
+            y += tileHeight
+        }
+        print("SlicingDone")
         return images
     }
     

@@ -23,10 +23,15 @@ class PuzzleViewController:
     var originalTilesBeforeShuffle = [UIImage]() // keep correct order for comparison
     var targetTiles = [UIImage]() // holds placeholders in drop spaces
     
+    @IBOutlet weak var hintImage: UIImageView!
+    @IBOutlet weak var hintView: UIView!
     @IBOutlet weak var movesCount: UILabel!
     @IBOutlet weak var tileCollectionView: UICollectionView!
     @IBOutlet weak var targetCollectionView: UICollectionView!
     @IBAction func showHint(_ sender: Any) {
+        hintImage.image = editedImage
+        hintView.isHidden = false
+        perform(#selector(hideHintView), with: nil, afterDelay: 2)
     }
     
     public var editedImage: UIImage? // for screenshot from last view (screenshot in A)
@@ -55,7 +60,7 @@ class PuzzleViewController:
         
         // fill tile arrays
         if let editedImage = editedImage {
-            let tiles = slice(screenshot: editedImage, into: 4)
+            let tiles = editedImage.slice(into: 4)
             originalTilesBeforeShuffle = tiles
             originalTiles.removeAll()
             originalTiles = tiles
@@ -177,51 +182,9 @@ class PuzzleViewController:
 
     }
     
-    func slice(screenshot: UIImage, into howMany: Int) -> [UIImage] {
-        let width: CGFloat
-        let height: CGFloat
-        
-        switch screenshot.imageOrientation {
-        case .left, .leftMirrored, .right, .rightMirrored:
-            width = screenshot.size.height
-            height = screenshot.size.width
-        default:
-            width = screenshot.size.width
-            height = screenshot.size.height
-        }
-        
-        let tileWidth = Int(width / CGFloat(howMany))
-        let tileHeight = Int(height / CGFloat(howMany))
-        
-        let scale = Int(screenshot.scale)
-        var images = [UIImage]()
-        let cgImage = screenshot.cgImage!
-        
-        var adjustedHeight = tileHeight
-        
-        var y = 0
-        for row in 0 ..< howMany {
-            if row == (howMany - 1) {
-                adjustedHeight = Int(height) - y
-            }
-            var adjustedWidth = tileWidth
-            var x = 0
-            for column in 0 ..< howMany {
-                if column == (howMany - 1) {
-                    adjustedWidth = Int(width) - x
-                }
-                let origin = CGPoint(x: x * scale, y: y * scale)
-                let size = CGSize(width: adjustedWidth * scale, height: adjustedHeight * scale)
-                let tileCGImage = cgImage.cropping(to: CGRect(origin: origin, size: size))!
-                images.append(UIImage(cgImage: tileCGImage, scale: screenshot.scale, orientation: screenshot.imageOrientation))
-                x += tileWidth
-            }
-            y += tileHeight
-        }
-        print("SlicingDone")
-        return images
+    @objc func hideHintView() {
+        hintView.isHidden = true
     }
-    
     
     // sends final image to next screen
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -233,6 +196,5 @@ class PuzzleViewController:
             }
         }
     }
-    
     
 }
