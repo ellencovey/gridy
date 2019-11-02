@@ -17,7 +17,6 @@ class EditedImageViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet weak var backgroundImage: UIImageView!
     
     @IBAction func start(_ sender: Any) {
-        print("Start")
     }
     @IBAction func close(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -106,6 +105,7 @@ class EditedImageViewController: UIViewController, UINavigationControllerDelegat
         
     }
     
+    // creating new image from edits to pass to next screen
     func composeCreationImage() -> UIImage {
         UIGraphicsBeginImageContextWithOptions(chosenImageContainer.bounds.size, false, 0)
         chosenImageContainer.drawHierarchy(in: chosenImageContainer.bounds, afterScreenUpdates: true)

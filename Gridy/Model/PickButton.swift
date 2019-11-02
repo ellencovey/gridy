@@ -8,12 +8,14 @@
 
 import UIKit
 
+// custom rounded button with icon and label
 class PickButton: UIButton {
     
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var mainLabel: UILabel!
     
+    // initialising
     override init(frame: CGRect) { // for using custom view in code
         super.init(frame: frame)
         commonInit()
@@ -25,7 +27,6 @@ class PickButton: UIButton {
     }
     
     private func commonInit() {
-        // we're going to do stuff here
         Bundle.main.loadNibNamed("PickButton", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds

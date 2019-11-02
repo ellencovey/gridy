@@ -36,6 +36,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
      // default image
     var creation = Creation.init()
     
+    // function for showing camera
     func displayCamera() {
         let sourceType = UIImagePickerController.SourceType.camera
         
@@ -66,6 +67,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
     }
     
+    // function for showing library
     func displayLibrary() {
         let sourceType = UIImagePickerController.SourceType.photoLibrary
         
@@ -123,6 +125,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         picker.dismiss(animated: true, completion: nil)
     }
     
+    // sending chosen image to next screen
     func processPicked(image: UIImage?) {
         if let newImage = image {
             creation.image = newImage

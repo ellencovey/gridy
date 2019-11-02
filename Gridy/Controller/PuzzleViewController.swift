@@ -19,6 +19,7 @@ class PuzzleViewController:
     var collectionViewIndexPath: IndexPath?
     var moves = 0
     
+    // arrays of tiles from split image
     var originalTiles = [UIImage]() // image split into pieces, will reorder
     var originalTilesBeforeShuffle = [UIImage]() // keep correct order for comparison
     var targetTiles = [UIImage]() // holds placeholders in drop spaces
@@ -29,9 +30,12 @@ class PuzzleViewController:
     @IBOutlet weak var tileCollectionView: UICollectionView!
     @IBOutlet weak var targetCollectionView: UICollectionView!
     @IBAction func showHint(_ sender: Any) {
+        // shows hint for 2 seconds and updates move count
         hintImage.image = editedImage
         hintView.isHidden = false
         perform(#selector(hideHintView), with: nil, afterDelay: 2)
+        moves += 1
+        movesCount.text = String(moves)
     }
     
     public var editedImage: UIImage? // for screenshot from last view (screenshot in A)
@@ -44,7 +48,6 @@ class PuzzleViewController:
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         // setting collection view delegates & data sources
         tileCollectionView.dataSource = self
@@ -140,6 +143,7 @@ class PuzzleViewController:
         }
     }
     
+    // moving tiles between collection views adn updating contents
     private func moveItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView) {
         let items = coordinator.items
         
@@ -156,6 +160,7 @@ class PuzzleViewController:
                         originalTiles.insert(blank, at: selected.row)
                     }
                     tileCollectionView.reloadData()
+                    
                 }
                 
             }
@@ -172,9 +177,11 @@ class PuzzleViewController:
         
         coordinator.drop(items.first!.dragItem, toItemAt: destinationIndexPath)
         
+        // adding to move count and updating label
         moves += 1
         movesCount.text = String(moves)
         
+        // testing for win after each move
         if originalTiles.allSatisfy({$0 == UIImage(named: "placeholder")}) {
             print("You win!")
             performSegue(withIdentifier: "PuzzletoWinSegue", sender: nil)
@@ -195,6 +202,13 @@ class PuzzleViewController:
                 destinationVC.finalMoves = moves
             }
         }
+    }
+    
+    // refreshes collection view layouts after rotating
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        tileCollectionView.reloadData()
+        targetCollectionView.reloadData()
     }
     
 }

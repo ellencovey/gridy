@@ -8,6 +8,7 @@
 
 import UIKit
 
+// outlet for cell images/tiles
 class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var tileImageView: UIImageView!
